@@ -53,44 +53,33 @@
 # PACIFIC NORTHWEST NATIONAL LABORATORY
 # operated by BATTELLE for the UNITED STATES DEPARTMENT OF ENERGY
 # under Contract DE-AC05-76RL01830
+
 #}}}
 
-#from distutils.core import setup
 from setuptools import setup, find_packages
+#from setuptools import setup, find_packages, Extension
+#from distutils.core import setup, Extension
 
+packages = find_packages('.')
+#packages = [packages "dent.modbus"]
+package = packages[0]
 
-install_requires = [
-    'BACpypes>=0.10,<0.11',
-    'flexible-jsonrpc',
-    'gevent>=0.13,<2',
-    'paramiko>=1.14,<2',
-    'posix-clock',
-    'pymodbus>=1.2,<2',
-    'pyzmq>=14.3,<15',
-    'setuptools',
-    'simplejson>=3.3,<4',
-    'Smap==2.0.24c780d',
-    'wheel>=0.24,<2',
-]
+#modbus_module = Extension('dent.modbus._TCPModbusClient',
+#                          sources=map(lambda f: "dent/modbus/" + f,
+#                                      ["TCPModbusClient_wrap.c", "TCPModbusClient.c",
+#                                       "utility.c", "crc16.c", "DieWithError.c",
+#                                       "HandleModbusTCPClient.c"]))
 
+setup(
+    name = package + 'agent',
+    version = "0.1",
+    install_requires = ['volttron'],
+    packages = packages,
+    #ext_modules=[modbus_module],
+    entry_points = {
+        'setuptools.installation': [
+            'eggsecutable = ' + package + '.agent:main',
+        ]
+    }
+)
 
-if __name__ == '__main__':
-    setup(
-        name = 'volttron',
-        version = '2.0',
-        description = 'Agent Execution Platform',
-        author = 'Volttron Team',
-        author_email = 'volttron@pnnl.gov',
-        url = 'https://github.com/VOLTTRON/volttron',
-        packages = find_packages('.'),
-        install_requires = install_requires,
-        entry_points = {
-            'console_scripts': [
-                'volttron = volttron.platform.main:_main',
-                'volttron-ctl = volttron.platform.control.client:_main',
-                'volttron-pkg = volttron.platform.packaging:_main',
-            ]
-        },
-        test_suite = 'nose.collector',
-        zip_safe = False,
-    )
