@@ -80,6 +80,9 @@ from collections import defaultdict
 from datetime import timedelta
 
 
+import pika
+import sys
+
 __all__ = ['PubSub']
 min_compatible_version = '3.0'
 max_compatible_version = ''
@@ -124,11 +127,21 @@ class PubSub(SubsystemBase):
         self._retry_period = 300.0
         self._processgreenlet = None
 
+
+
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        self.channel = self.connection.channel()
+
+
         def setup(sender, **kwargs):
             # pylint: disable=unused-argument
             self._processgreenlet = gevent.spawn(self._process_loop)
             core.onconnected.connect(self._connected)
             self.vip_socket = self.core().socket
+
+            self.channel.exchange_declare(exchange='volttron',
+                                     exchange_type='topic')
+
             def subscribe(member):   # pylint: disable=redefined-outer-name
                 for peer, bus, prefix, all_platforms in annotations(
                         member, set, 'pubsub.subscriptions'):
@@ -372,6 +385,18 @@ class PubSub(SubsystemBase):
         except KeyError:
             _log.error("PUBSUB something went wrong in add subscriptions")
 
+    def add_rabbit_subcription(self, prefix, callback):
+        result = self.channel.queue_declare(exclusive=True)
+        queue_name = result.method.queue
+        self.channel.queue_bind(exchange='volttron',
+                           queue=queue_name,
+                           routing_key=prefix.replace("/",".")+".#")
+        self.channel.basic_consume(callback,
+                              queue=queue_name,
+                              no_ack=True)
+
+        self.channel.start_consuming()
+
     @dualmethod
     @spawn
     def subscribe(self, peer, prefix, callback, bus='', all_platforms=False):
@@ -596,6 +621,10 @@ class PubSub(SubsystemBase):
             headers = {}
         headers['min_compatible_version'] = min_compatible_version
         headers['max_compatible_version'] = max_compatible_version
+
+        self.channel.basic_publish(exchange='volttron',
+                              routing_key=topic.replace("/","."),
+                              body=str(message))
 
         if peer is None:
             peer = 'pubsub'
