@@ -131,7 +131,7 @@ There are several options for VOLTTRON\ :sup:`TM` :ref:`support <community>`.
 License
 -------
 
-The project is :ref:`licensed <license>` under a modified BSD license.
+The project is :ref:`licensed <license>` under Apache 2.0.
 
 
 Contents:

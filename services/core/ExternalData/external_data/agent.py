@@ -59,7 +59,7 @@ from volttron.platform.messaging import headers as headers_mod
 utils.setup_logging()
 __author__ = 'Kyle Monson'
 __copyright__ = 'Copyright (c) 2017, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 
 _log = logging.getLogger(__name__)
 __version__ = '1.0'

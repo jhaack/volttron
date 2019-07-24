@@ -48,7 +48,7 @@ from volttron.platform.messaging import (headers as headers_mod, topics)
 __author1__ = 'Craig Allwardt <craig.allwardt@pnnl.gov>'
 __author2__ = 'Robert Lutes <robert.lutes@pnnl.gov>'
 __copyright__ = 'Copyright (c) 2016, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 __version__ = '0.1'
 
 def DrivenAgent(config_path, **kwargs):

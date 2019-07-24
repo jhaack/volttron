@@ -50,7 +50,7 @@ __all__ = ['schedule']
 
 __author__ = 'Brandon Carpenter <brandon.carpenter@pnnl.gov>'
 __copyright__ = 'Copyright (c) 2016, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 
 
 _range_re = re.compile(r'^(.{0}(?=\*)|\w*(?=-)|\w+(?!\*))'

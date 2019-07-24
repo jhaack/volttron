@@ -52,7 +52,7 @@ __all__ = ['AbstractDrivenAgent', 'ConversionMapper', 'Results']
 
 __author__ = 'Craig Allwardt <craig.allwardt@pnnl.gov>'
 __copyright__ = 'Copyright (c) 2014, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 
 
 class AbstractDrivenAgent(object):

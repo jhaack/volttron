@@ -63,7 +63,7 @@ __all__ = ['ResourceError', 'ExecutionEnvironment', 'ResourceMonitor']
 
 __author__ = 'Brandon Carpenter <brandon.carpenter@pnnl.gov>'
 __copyright__ = 'Copyright (c) 2016, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 __version__ = '0.1'
 
 

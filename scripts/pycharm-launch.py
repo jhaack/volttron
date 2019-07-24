@@ -95,6 +95,7 @@ if not agent_identity:
     sys.exit(10)
 
 valid_chars = "_.%s%s" % (string.ascii_letters, string.digits)
+valid_chars = valid_chars + "-"
 
 for c in agent_identity:
     if c not in valid_chars:
@@ -105,6 +106,7 @@ for c in agent_identity:
 
 if agent_identity:
     new_dir = os.path.join(volttron_home, 'keystores', agent_identity)
+
     if not os.path.exists(new_dir):
         os.makedirs(new_dir)
         try:

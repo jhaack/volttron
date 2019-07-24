@@ -67,7 +67,7 @@ __authors__ = ['Robert Lutes <robert.lutes@pnnl.gov>',
                'Kyle Monson <kyle.monson@pnnl.gov>',
                'Craig Allwardt <craig.allwardt@pnnl.gov>']
 __copyright__ = 'Copyright (c) 2016, Battelle Memorial Institute'
-__license__ = 'FreeBSD'
+__license__ = 'Apache 2.0'
 
 
 def DataPub(config_path, **kwargs):
