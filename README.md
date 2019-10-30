@@ -19,10 +19,10 @@ with that data.
 
 ## Background
 
-VOLTTRON is written in Python 2.7 and runs on Linux Operating Systems. For
+VOLTTRON is written in Python 3.6 and runs on Linux Operating Systems. For
 users unfamiliar with those technologies, the following resources are recommended:
 
-https://docs.python.org/2.7/tutorial/
+https://docs.python.org/3.6/tutorial/
 http://ryanstutorials.net/linuxtutorial/
 
 ## Installation

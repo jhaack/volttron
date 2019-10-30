@@ -57,7 +57,7 @@ feature, which might look something like this:
   $ export PIP_WHEEL_DIR=/path/to/cache/wheelhouse
   $ export PIP_FIND_LINKS=file://$PIP_WHEEL_DIR
   $ mkdir -p $PIP_WHEEL_DIR
-  $ python2.7 bootstrap.py -o
+  $ python3.6 bootstrap.py -o
   $ env/bin/python bootstrap.py --wheel
   $ env/bin/python bootstrap.py
 
@@ -346,8 +346,8 @@ def main(argv=sys.argv):
         sys.exit(77)
 
     # Unfortunately, many dependencies are not yet available in Python3.
-    if sys.version_info[:2] != (2, 7):
-        sys.stderr.write('error: Python 2.7 is required\n')
+    if sys.version_info[:2] != (3, 6):
+        sys.stderr.write('error: Python 3.6 is required\n')
         sys.exit(1)
 
     # Build the parser
@@ -358,7 +358,7 @@ def main(argv=sys.argv):
     parser = argparse.ArgumentParser(
         description='Bootstrap and update a virtual Python environment '
                     'for VOLTTRON development.',
-        usage='\n  bootstrap: python2.7 %(prog)s [options]'
+        usage='\n  bootstrap: python3.6 %(prog)s [options]'
               '\n  update:    {} %(prog)s [options]'.format(python),
         prog=os.path.basename(argv[0]),
         epilog='''

@@ -1,4 +1,4 @@
-language: python2.7
+language: python3.6
 
 # Each array entry will execute 1 job.
 env:
